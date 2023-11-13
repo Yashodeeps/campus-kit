@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { Outlet, createBrowserRouter } from "react-router-dom";
+import "./App.css";
+import Body from "./components/Body";
+import Header from "./components/Header";
+import EventPage from "./components/EventPage";
+
+export const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: App(),
+    children: [
+      {
+        path: "/events",
+        element: <EventPage />,
+      },
+      {
+        path: "/",
+        element: <Body />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Outlet />
+      <h1>event_img</h1>
+      <h1>Campus_kit info</h1>
     </div>
   );
 }
